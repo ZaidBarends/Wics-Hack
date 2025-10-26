@@ -6,9 +6,50 @@ if(!window.handleReadLesson) window.handleReadLesson = function(){ console.debug
 if(!window.handleDownloadCert) window.handleDownloadCert = function(){ console.debug('handleDownloadCert: app not initialized yet') }
 const lessonsUrl = 'lessons.json';
 const stateKey = 'dpa:state';
+const langKey = 'dpa:lang';
 let state = JSON.parse(localStorage.getItem(stateKey) || '{}');
 if(!state.completed) state.completed = {};
 let __dragging = null;
+let currentLang = localStorage.getItem(langKey) || 'en';
+
+// Minimal translations. Keys used in UI and some labels.
+const i18n = {
+  en: {
+    'app.tagline': 'Micro-lessons that teach computing without code',
+    'lessons.title': 'Lessons',
+    'progress.title': 'Your Progress',
+    'controls.mark_complete': 'Mark Complete',
+    'controls.completed': 'Completed',
+  'toast.confirm': 'Confirm completion?',
+  'toast.confirm_btn': 'Confirm',
+  'toast.cancel_btn': 'Cancel',
+    'download.cert': 'Download Certificate'
+  },
+  af: {
+    'app.tagline': 'Micro-lesse wat rekenaarideeë sonder kode leer',
+    'lessons.title': 'Lesse',
+    'progress.title': 'Jou vordering',
+    'controls.mark_complete': 'Merk as voltooi',
+    'controls.completed': 'Voltooi',
+  'toast.confirm': 'Bevestig voltooiing?',
+  'toast.confirm_btn': 'Bevestig',
+  'toast.cancel_btn': 'Kanselleer',
+    'download.cert': 'Laai Sertifikaat af'
+  },
+  xh: {
+    'app.tagline': 'Izifundo ezimfutshane ezifundisa iinkqubo ngaphandle kwekhowudi',
+    'lessons.title': 'Izifundo',
+    'progress.title': 'Inkqubela yakho',
+    'controls.mark_complete': 'Marka Ugqibile',
+    'controls.completed': 'Igqityiweyo',
+  'toast.confirm': 'Qinisekisa ukuqeda?',
+  'toast.confirm_btn': 'Qinisekisa',
+  'toast.cancel_btn': 'Khansela',
+    'download.cert': 'Khuphela Isatifikethi'
+  }
+};
+
+function t(key){ return (i18n[currentLang] && i18n[currentLang][key]) || (i18n['en'][key] || key) }
 
 function $(sel){ return document.querySelector(sel) }
 function $all(sel){ return Array.from(document.querySelectorAll(sel)) }
@@ -16,14 +57,19 @@ function $all(sel){ return Array.from(document.querySelectorAll(sel)) }
 async function loadLessons(){ const res = await fetch(lessonsUrl); return res.json() }
 
 function renderLessons(lessons){
+  // set localized header
+  const lessonsHeading = document.querySelector('#lessons h2'); if(lessonsHeading) lessonsHeading.textContent = t('lessons.title');
   const list = $('#lesson-list'); list.innerHTML = '';
   const tpl = document.getElementById('lesson-card-template');
   for(const lesson of lessons){
     const node = tpl.content.cloneNode(true);
-  const img = node.querySelector('.lesson-thumb')
-  if(img && lesson.image){ img.src = lesson.image; img.alt = lesson.title + ' icon'; img.style.display = '' } else if(img) { img.style.display = 'none' }
-  node.querySelector('.title').textContent = lesson.title;
-  node.querySelector('.summary').textContent = lesson.summary;
+    const img = node.querySelector('.lesson-thumb')
+    if(img && lesson.image){ img.src = lesson.image; img.alt = lesson.title + ' icon'; img.style.display = '' } else if(img) { img.style.display = 'none' }
+    // lesson title/summary may have language variants: title_en, title_af, title_xh
+    const lt = lesson['title_'+currentLang] || lesson.title;
+    const ls = lesson['summary_'+currentLang] || lesson.summary || '';
+    node.querySelector('.title').textContent = lt;
+    node.querySelector('.summary').textContent = ls;
     const btn = node.querySelector('.start'); btn.addEventListener('click', ()=> openLesson(lesson));
     list.appendChild(node);
   }
@@ -31,11 +77,13 @@ function renderLessons(lessons){
 
 function openLesson(lesson){
   $('#lessons').hidden = true; $('#lesson-area').hidden = false;
-  $('#lesson-title').textContent = lesson.title; $('#lesson-body').innerHTML = '<p>'+lesson.body+'</p>';
+  const title = lesson['title_'+currentLang] || lesson.title;
+  const body = lesson['body_'+currentLang] || lesson.body || '';
+  $('#lesson-title').textContent = title; $('#lesson-body').innerHTML = '<p>'+body.replace(/\n/g,'<br>')+'</p>';
   renderChallenge(lesson.challenge);
   const completeBtn = $('#complete-lesson');
-  if(state.completed[lesson.id]){ showBadge(`Completed: ${lesson.title}`); if(completeBtn) completeBtn.textContent = 'Completed' }
-  else { if(completeBtn) completeBtn.textContent = 'Mark Complete' }
+  if(state.completed[lesson.id]){ showBadge(`Completed: ${title}`); if(completeBtn) completeBtn.textContent = t('controls.completed') }
+  else { if(completeBtn) completeBtn.textContent = t('controls.mark_complete') }
 }
 
 function renderChallenge(challenge){
@@ -53,7 +101,7 @@ function renderChallenge(challenge){
   const right = document.createElement('div'); right.className = 'pane targets';
   for(const item of challenge.items) left.appendChild(createSourceWrapper(item));
   for(const t of challenge.targets){
-    const target = document.createElement('div'); target.className = 'target'; target.dataset.expect = t.expect; target.innerHTML = '<strong>'+t.label+'</strong>';
+    const target = document.createElement('div'); target.className = 'target'; target.dataset.expect = t.expect; const lbl = t['label_'+currentLang] || t.label; target.innerHTML = '<strong>'+lbl+'</strong>';
     target.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move' });
     target.addEventListener('drop', e => {
       e.preventDefault(); const item = e.dataTransfer.getData('text/plain') || (__dragging && __dragging.dataset && __dragging.dataset.value); if(!item) return;
@@ -122,6 +170,8 @@ function showToast(message, onConfirm){
   const wrapper = document.querySelector('.toast-wrapper'); const t = $('#toast'); const msg = $('#toast-msg'); const confirm = $('#toast-confirm'); const cancel = $('#toast-cancel'); if(!t || !msg || !confirm || !cancel) return;
   try{
   msg.textContent = message; if(wrapper){ wrapper.hidden = false; wrapper.style.display = 'flex' } t.hidden = false; confirm.disabled = false;
+    // set localized button labels
+    confirm.textContent = t('toast.confirm_btn'); cancel.textContent = t('toast.cancel_btn');
     const AUTO_HIDE_MS = 5000; let timeout = setTimeout(()=>{ cleanup() }, AUTO_HIDE_MS);
   const cleanup = ()=>{ clearTimeout(timeout); t.hidden = true; confirm.onclick = null; cancel.onclick = null; const closeBtn = document.getElementById('toast-close'); if(closeBtn) closeBtn.onclick = null; if(wrapper){ wrapper.style.display = 'none'; wrapper.hidden = true } window.removeEventListener('keydown', keyHandler) };
   confirm.onclick = ()=>{ try{ console.debug('toast confirm clicked'); onConfirm && onConfirm(); } finally { cleanup() } };
@@ -171,7 +221,25 @@ window.handleDownloadCert = function(){
 }
 
 function init(){
-  loadLessons().then(lessons=>{ window.lessons = lessons; renderLessons(lessons) })
+  loadLessons().then(lessons=>{ window.lessons = lessons; renderLessons(lessons);
+    // apply initial localized UI text
+    document.documentElement.lang = currentLang;
+    const tag = document.querySelector('.brand p'); if(tag) tag.textContent = t('app.tagline');
+    const progressH = document.querySelector('#progress h2'); if(progressH) progressH.textContent = t('progress.title');
+    const downloadBtn = document.getElementById('download-cert'); if(downloadBtn) downloadBtn.textContent = t('download.cert');
+    const lessonsHeading = document.querySelector('#lessons h2'); if(lessonsHeading) lessonsHeading.textContent = t('lessons.title');
+  })
+
+  // language selector wiring
+  const langSelect = document.getElementById('lang'); if(langSelect){ langSelect.value = currentLang; langSelect.addEventListener('change', (e)=>{ currentLang = e.target.value; localStorage.setItem(langKey, currentLang); // re-render UI
+    // update tagline
+    const tag = document.querySelector('.brand p'); if(tag) tag.textContent = t('app.tagline');
+    // update other headings/buttons
+    const progressH = document.querySelector('#progress h2'); if(progressH) progressH.textContent = t('progress.title');
+    const downloadBtn = document.getElementById('download-cert'); if(downloadBtn) downloadBtn.textContent = t('download.cert');
+    const completeBtn = document.getElementById('complete-lesson'); if(completeBtn) completeBtn.textContent = t('controls.mark_complete');
+    renderLessons(window.lessons || []);
+  }) }
 
   const back = $('#back'); if(back) back.addEventListener('click', ()=>{ $('#lesson-area').hidden = true; $('#lessons').hidden = false })
   const readBtn = $('#read-lesson'); if(readBtn) readBtn.addEventListener('click', ()=>{ const title = $('#lesson-title').textContent || ''; const body = $('#lesson-body').textContent || ''; if(title) speak(title + '. ' + body) })

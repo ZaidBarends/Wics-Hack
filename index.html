@@ -13,7 +13,15 @@
   <header>
     <div class="brand">
       <h1>Yanga</h1>
-      <p>Micro-lessons that teach computing without code</p>
+      <p data-i18n="app.tagline">Micro-lessons that teach computing without code</p>
+    </div>
+    <div class="lang-select">
+      <label for="lang">Language</label>
+      <select id="lang" aria-label="Language selector">
+        <option value="en">English</option>
+        <option value="af">Afrikaans</option>
+        <option value="xh">isiXhosa</option>
+      </select>
     </div>
     
   </header>
@@ -38,9 +46,9 @@
     </section>
 
     <section id="progress">
-      <h2>Your Progress</h2>
+      <h2 data-i18n="progress.title">Your Progress</h2>
       <div id="badges" class="badges"></div>
-  <button id="download-cert" onclick="handleDownloadCert()">Download Certificate</button>
+  <button id="download-cert" onclick="handleDownloadCert()" data-i18n="download.cert">Download Certificate</button>
     </section>
   </main>
 

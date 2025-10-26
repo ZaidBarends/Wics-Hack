@@ -2,96 +2,132 @@
   {
     "id": "algorithms",
     "title": "Plan a birthday (Algorithms)",
+    "title_af": "Beplan 'n verjaarsdag (Algoritmes)",
+    "title_xh": "Cwangcisa usuku lokuzalwa (IiAlgorithm)",
     "summary": "Learn step-by-step planning as an algorithm.",
-  "body": "An algorithm is a clear list of steps to do something. For a birthday, you need a plan so things happen in the right order.\n\nWhat to do: Put the actions into the correct order so the party is ready on time.",
-  "image": "icons/algorithms.svg",
-  "challenge": {
+    "summary_af": "Leer stapsgewyse beplanning as 'n algoritme.",
+    "summary_xh": "Funda ukuhlela ngezinyathelo njengendlela.",
+    "body": "An algorithm is a clear list of steps to do something. For a birthday, you need a plan so things happen in the right order.\n\nWhat to do: Put the actions into the correct order so the party is ready on time.",
+    "body_af": "'n Algoritme is 'n duidelike lys van stappe om iets te doen. Vir 'n verjaarsdag het jy 'n plan sodat dinge in die regte volgorde gebeur.\n\nWat om te doen: Sit die aksies in die korrekte volgorde sodat die partytjie betyds gereed is.",
+    "body_xh": "I-algorithm yinkcazo yesinyathelo ngesinyathelo sokwenza into. Ngosuku lokuzalwa, ufuna isicwangciso ukuze izinto zenziwe ngendlela efanelekileyo.\n\nYenza: Beka izenzo ngokulandelelana okufanelekileyo ukuze umnyhadala ulungile ngexesha.",
+    "image": "icons/algorithms.svg",
+    "challenge": {
       "items": ["buy cake","send invites","decorate","cook food"],
       "targets": [
-        {"label":"First step","expect":"send invites"},
-        {"label":"Then","expect":"buy cake"},
-        {"label":"Then","expect":"cook food"},
-        {"label":"Last","expect":"decorate"}
+        {"label":"First step","expect":"send invites","label_af":"Eerste stap","label_xh":"Inyathelo sokuqala"},
+        {"label":"Then","expect":"buy cake","label_af":"Dan","label_xh":"Emva koko"},
+        {"label":"Then","expect":"cook food","label_af":"Dan","label_xh":"Emva koko"},
+        {"label":"Last","expect":"decorate","label_af":"Laaste","label_xh":"Okokugqibela"}
       ]
     }
   },
   {
     "id": "data-org",
     "title": "Sort shop stock (Data organization)",
+    "title_af": "Sorteer winkelvoorraad (Data-organisasie)",
+    "title_xh": "Hlela iimpahla zivenkile (Ulawulo lwedatha)",
     "summary": "Group items to make them easy to find.",
-  "body": "Data organization means grouping similar things so they are easier to find. In a small shop, foods go together and cleaning items go together.\n\nWhat to do: Move each item into the correct category box (Food or Cleaning).",
-  "image": "icons/data-org.svg",
-  "challenge": {
+    "summary_af": "Groepeer items om dit maklik te vind.",
+    "summary_xh": "Beka izinto ezifanayo ukuze kube lula ukuzifumana.",
+    "body": "Data organization means grouping similar things so they are easier to find. In a small shop, foods go together and cleaning items go together.\n\nWhat to do: Move each item into the correct category box (Food or Cleaning).",
+    "body_af": "Data-organisasie beteken om soortgelyke goed te groepeer sodat dit makliker is om te vind. In 'n klein winkel pas kos by kos en skoonmaakmiddels by mekaar.\n\nWat om te doen: Verskuif elke item na die korrekte kategorie blokkie (Kos of Skoonmaak).",
+    "body_xh": "Ukuhlelwa kwedatha kuthetha ukubeka izinto ezifanayo kunye ukuze kube lula ukuzifumana. Kwivenkile encinci, ukutya kubekwa kunye nokucoca izinto ndawonye.\n\nYenza: Hambisa into nganye kwibhokisi efanelekileyo (Ukutya okanye Ukucoceka).",
+    "image": "icons/data-org.svg",
+    "challenge": {
       "items": ["sugar","soap","rice","detergent"],
       "targets": [
-        {"label":"Food","expect":"rice"},
-        {"label":"Food","expect":"sugar"},
-        {"label":"Cleaning","expect":"soap"},
-        {"label":"Cleaning","expect":"detergent"}
+        {"label":"Food","expect":"rice","label_af":"Kos","label_xh":"Ukutya"},
+        {"label":"Food","expect":"sugar","label_af":"Kos","label_xh":"Ukutya"},
+        {"label":"Cleaning","expect":"soap","label_af":"Skoonmaak","label_xh":"Ukucoceka"},
+        {"label":"Cleaning","expect":"detergent","label_af":"Skoonmaak","label_xh":"Ukucoceka"}
       ]
     }
   },
   {
     "id": "flowcharts",
     "title": "What to do when it rains (Flowcharts)",
+    "title_af": "Wat om te doen wanneer dit reën (Vloei-kaarte)",
+    "title_xh": "Yintoni oya kuyenza xa lina (IiFlowcharts)",
     "summary": "Choose actions based on conditions.",
-  "body": "Flowcharts are a way to decide what to do based on conditions, like whether it will rain. They help you pick the right action step by step.\n\nWhat to do: Choose the action that fits the weather condition in each box.",
-  "image": "icons/flowcharts.svg",
-  "challenge": {
+    "summary_af": "Kies aksies gebaseer op toestande.",
+    "summary_xh": "Khetha izenzo ezihambelana nemeko.",
+    "body": "Flowcharts are a way to decide what to do based on conditions, like whether it will rain. They help you pick the right action step by step.\n\nWhat to do: Choose the action that fits the weather condition in each box.",
+    "body_af": "Vloei-kaarte help jou besluit watter aksie om te neem afhangende van 'n toestand, soos of dit gaan reën. Hulle lei jou stap vir stap.\n\nWat om te doen: Kies die aksie wat by die weerstoestand in elke blokkie pas.",
+    "body_xh": "Ii-flowchart zindlela zokukhetha isenzo ngokusekelwe kwiimeko, njengoko ingaba iya kulila na. Zikukhokela ukuba wenze isigqibo ngesinyathelo.\n\nYenza: Khetha isenzo elifanelekileyo kwimeko yemozulu kwibhokisi nganye.",
+    "image": "icons/flowcharts.svg",
+    "challenge": {
       "items": ["cover crops","postpone work","check forecast","use shelter"],
       "targets": [
-        {"label":"If rain expected","expect":"check forecast"},
-        {"label":"If raining","expect":"cover crops"},
-        {"label":"If heavy rain","expect":"use shelter"},
-        {"label":"Else","expect":"postpone work"}
+        {"label":"If rain expected","expect":"check forecast","label_af":"As reën verwag word","label_xh":"Ukuba kulindelwe imvula"},
+        {"label":"If raining","expect":"cover crops","label_af":"As dit reën","label_xh":"Ukuba lina"},
+        {"label":"If heavy rain","expect":"use shelter","label_af":"As swaar reën","label_xh":"Ukuba yinovuzo enkulu yemvula"},
+        {"label":"Else","expect":"postpone work","label_af":"Anders","label_xh":"Okanye"}
       ]
     }
   },
   {
     "id": "debugging",
     "title": "Fix the timetable (Debugging)",
+    "title_af": "Herstel die rooster (Ontfouting)",
+    "title_xh": "Lungisa itayim (Ukulungisa iimpazamo)",
     "summary": "Find and correct mistakes in a schedule.",
-  "body": "Debugging means finding mistakes and fixing them. A timetable with activities in the wrong places needs correcting so the day makes sense.\n\nWhat to do: Put each activity into the correct time slot so the schedule is fixed.",
-  "image": "icons/debugging.svg",
-  "challenge": {
+    "summary_af": "Vind en reg die foute in 'n skedule.",
+    "summary_xh": "Fumana kwaye ulungise iimpazamo kwiskeduli.",
+    "body": "Debugging means finding mistakes and fixing them. A timetable with activities in the wrong places needs correcting so the day makes sense.\n\nWhat to do: Put each activity into the correct time slot so the schedule is fixed.",
+    "body_af": "Ontfouting beteken om foute te vind en reg te maak. 'n Rooster met aktiwiteite in die verkeerde plekke moet reggestel word sodat die dag sin maak.\n\nWat om te doen: Plaas elke aktiwiteit in die korrekte tydgleuf sodat die rooster reg is.",
+    "body_xh": "Ukulungisa iimpazamo kuthetha ukufumana iimpazamo kunye nokuzilungisa. Ishedyuli enezinto ezingalunganga kufuneka ilungiswe ukuze usuku lube nentsingiselo.\n\nYenza: Beka umsebenzi ngamnye kwixesha elifanelekileyo ukuze ishedyuli ilungiswe.",
+    "image": "icons/debugging.svg",
+    "challenge": {
       "items": ["market visit","school drop","harvest","rest"],
       "targets": [
-        {"label":"Morning","expect":"school drop"},
-        {"label":"Midday","expect":"market visit"},
-        {"label":"Afternoon","expect":"harvest"},
-        {"label":"Evening","expect":"rest"}
+        {"label":"Morning","expect":"school drop","label_af":"Môre","label_xh":"Ekuseni"},
+        {"label":"Midday","expect":"market visit","label_af":"Middag","label_xh":"Midi"},
+        {"label":"Afternoon","expect":"harvest","label_af":"Middag","label_xh":"Emva kwemini"},
+        {"label":"Evening","expect":"rest","label_af":"Aand","label_xh":"Ngokuhlwa"}
       ]
     }
   },
   {
     "id": "logic",
     "title": "If/Else farming tasks (Logical thinking)",
+    "title_af": "If/Else boerdery take (Logiese denke)",
+    "title_xh": "Imisebenzi yamafama ye-If/Else (Ucingo lokucinga)",
     "summary": "Make decisions using simple rules.",
-  "body": "If/Else rules help you make decisions: if a condition is true do one thing, else do another. Farmers use simple rules to choose tasks.\n\nWhat to do: Place the task that matches each condition (for example, water if the plants are thirsty).",
-  "image": "icons/logic.svg",
-  "challenge": {
+    "summary_af": "Neem besluite met eenvoudige reëls.",
+    "summary_xh": "Yenza izigqibo usebenzisa imithetho elula.",
+    "body": "If/Else rules help you make decisions: if a condition is true do one thing, else do another. Farmers use simple rules to choose tasks.\n\nWhat to do: Place the task that matches each condition (for example, water if the plants are thirsty).",
+    "body_af": "If/Else reëls help jou besluit: as 'n toestand waar is, doen iets; anders doen iets anders. Boere gebruik eenvoudige reëls om take te kies.\n\nWat om te doen: Sit die taak wat by elke toestand pas (bv water as die plante dors is).",
+    "body_xh": "Imithetho ye-If/Else ikunceda ukhethe: ukuba imeko inyanisekile yenza enye into, kungenjalo enye. Abooti basebenzisa imithetho elula ukukhetha imisebenzi.\n\nYenza: Beka umsebenzi ohambelana nemeko nganye (umzekelo, faka amanzi ukuba izityalo zimanzi).",
+    "image": "icons/logic.svg",
+    "challenge": {
       "items": ["water plants","fertilize","harvest","wait"],
       "targets": [
-        {"label":"If thirsty","expect":"water plants"},
-        {"label":"If mature","expect":"harvest"},
-        {"label":"If low nutrients","expect":"fertilize"},
-        {"label":"Else","expect":"wait"}
+        {"label":"If thirsty","expect":"water plants","label_af":"As dors","label_xh":"Ukuba izityalo zimanzi"},
+        {"label":"If mature","expect":"harvest","label_af":"As ryp","label_xh":"Ukuba zikulungele"},
+        {"label":"If low nutrients","expect":"fertilize","label_af":"As lae voedingstowwe","label_xh":"Ukuba izondlo zisezantsi"},
+        {"label":"Else","expect":"wait","label_af":"Anders","label_xh":"Okanye"}
       ]
     }
   },
   {
     "id": "budgets",
     "title": "Household budget (Data literacy)",
+    "title_af": "Huishoudelike begroting (Datageletterdheid)",
+    "title_xh": "Ubhaliso lwesabelo sasekhaya (Uqeqesho lwedatha)",
     "summary": "Prioritize expenses to balance a small household budget.",
-  "body": "A household budget means deciding which expenses are most important so money lasts. Some items are essential, others are optional.\n\nWhat to do: Put each expense into the right group from essential to optional.",
-  "image": "icons/budgets.svg",
-  "challenge": {
+    "summary_af": "Prioritiseer uitgawes om 'n klein huishoudelike begroting in balans te hou.",
+    "summary_xh": "Beka phambili iindleko ukuze imali ihlale.",
+    "body": "A household budget means deciding which expenses are most important so money lasts. Some items are essential, others are optional.\n\nWhat to do: Put each expense into the right group from essential to optional.",
+    "body_af": "'n Begroting beteken besluit watter uitgawes belangrik is sodat geld volhou. Sommige items is noodsaaklik, ander opsioneel.\n\nWat om te doen: Sit elke uitgawe in die regte groep van noodsaaklik tot opsioneel.",
+    "body_xh": "Isabelomali sasekhaya kuthetha ukucwangcisa iindleko ukuze imali ihlale. Ezinye izinto zibalulekile, ezinye zingakhethwa.\n\nYenza: Beka iindleko nganye kwiqela elifanelekileyo ukusuka kubalulekile ukuya kokuzenzela.",
+    "image": "icons/budgets.svg",
+    "challenge": {
       "items": ["rent","school fees","groceries","entertainment"],
       "targets": [
-        {"label":"Essential","expect":"rent"},
-        {"label":"Essential","expect":"groceries"},
-        {"label":"Important","expect":"school fees"},
-        {"label":"Optional","expect":"entertainment"}
+        {"label":"Essential","expect":"rent","label_af":"Noodsaaklik","label_xh":"Ebalulekileyo"},
+        {"label":"Essential","expect":"groceries","label_af":"Noodsaaklik","label_xh":"Ebalulekileyo"},
+        {"label":"Important","expect":"school fees","label_af":"Belangrik","label_xh":"Kubalulekile"},
+        {"label":"Optional","expect":"entertainment","label_af":"Opsioneel","label_xh":"Okokuzonwabisa"}
       ]
     }
   }
