@@ -1,0 +1,11 @@
+{
+  "name": "Digital Problem-Solving Academy",
+  "short_name": "DPSA",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#1f7a8c",
+  "description": "Micro-lessons that teach computing without code",
+  "icons": []
+}

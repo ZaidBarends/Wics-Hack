@@ -1,0 +1,52 @@
+:root{
+  --pink: #FFD1DC; /* primary */
+  --pink-2: #FF9AB3; /* stronger */
+  --deep: #2b2b3a; /* dark text */
+  --muted: #6b6b74;
+  --card: #ffffff;
+  --success: #2b9348;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#fff7fb 0%, #fff 60%);color:var(--deep);margin:0;padding:28px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand h1{margin:0;font-size:1.6rem;color:var(--deep);letter-spacing:0.2px}
+.brand p{margin:4px 0 0 0;color:var(--muted)}
+.container{max-width:1100px;margin:18px auto}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
+.lesson-card{background:linear-gradient(180deg,var(--card),#fff);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(31,42,63,0.06);border:1px solid rgba(39,20,30,0.02);transition:transform .18s ease,box-shadow .18s ease}
+.lesson-thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;margin-bottom:8px}
+.lesson-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(31,42,63,0.09)}
+.lesson-card .title{margin:0 0 6px 0;font-weight:600;color:#2a2a3a}
+.lesson-card .summary{margin:0 0 14px 0;color:var(--muted);font-size:0.95rem}
+button{background:var(--pink);color:var(--deep);border:none;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:700;box-shadow:0 10px 22px rgba(255,209,220,0.18)}
+.small{padding:6px 10px;font-size:0.95rem;border-radius:8px}
+#lesson-area{margin-top:20px}
+.challenge{display:flex;flex-direction:row;gap:18px;align-items:flex-start;margin-top:14px}
+.pane{background:var(--card);padding:16px;border-radius:12px;min-height:140px;flex:1;border:1px solid rgba(20,20,30,0.03)}
+.draggable{background:linear-gradient(90deg,#fff,#fffaf6);padding:10px;border-radius:10px;margin:10px 0;cursor:grab;border:1px solid rgba(0,0,0,0.04);display:inline-block}
+.placed-item{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff7f9;padding:8px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)}
+.placed-item .remove{background:transparent;border:none;color:#c0392b;cursor:pointer;font-weight:bold}
+.targets{display:flex;flex-direction:column;gap:12px}
+.target{border:2px dashed rgba(255,150,180,0.35);padding:14px;border-radius:10px;min-height:60px;background:linear-gradient(180deg,rgba(255,209,220,0.12),transparent)}
+.target strong{display:block;margin-bottom:8px;color:#2a2a3a}
+.target.ok{box-shadow:0 6px 18px rgba(43,147,72,0.08);border-color:rgba(43,147,72,0.6);background:linear-gradient(180deg,rgba(155,255,206,0.12),transparent)}
+.target.bad{box-shadow:0 6px 18px rgba(192,57,43,0.06);border-color:rgba(192,57,43,0.6);background:linear-gradient(180deg,rgba(255,210,210,0.08),transparent)}
+.read-item{background:transparent;border:none;font-size:1.1rem;cursor:pointer}
+.read-item:focus, #read-lesson:focus, .remove:focus{outline:3px solid rgba(255,209,220,0.45);outline-offset:3px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.toast-wrapper{position:fixed;left:50%;transform:translateX(-50%);top:18px;z-index:1200;width:min(720px,calc(100% - 40px));display:none;justify-content:center}
+#toast{position:relative;width:100%;}
+.toast{background:transparent}
+.toast-body{background:var(--deep);color:#fff;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:12px;box-shadow:0 12px 30px rgba(43,43,58,0.2);justify-content:space-between}
+.toast-actions{display:flex;gap:8px;align-items:center}
+.toast .small{background:#fff;color:var(--deep);padding:8px 10px;border-radius:8px}
+.toast-close{background:transparent;border:none;color:#fff;font-size:1.05rem;cursor:pointer;padding:6px 8px;border-radius:8px}
+.toast-close:focus{outline:2px solid rgba(255,255,255,0.2)}
+.badge{background:var(--pink-2);padding:12px 14px;border-radius:14px;font-weight:700;color:#fff;box-shadow:0 8px 20px rgba(255,154,179,0.14);font-size:1rem}
+.badge{transform-origin:center;transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .28s}
+.toast{transition:opacity .2s ease,transform .2s ease}
+#download-cert{background:var(--success);color:#fff;border-radius:10px}
+.controls{margin-top:12px}
+.lesson-head{display:flex;align-items:center;gap:10px}
+#read-lesson{background:var(--pink);border-radius:10px;padding:8px}
+@media (max-width:900px){.challenge{flex-direction:column}.card-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
