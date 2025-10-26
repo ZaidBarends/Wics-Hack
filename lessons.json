@@ -1,0 +1,98 @@
+[
+  {
+    "id": "algorithms",
+    "title": "Plan a birthday (Algorithms)",
+    "summary": "Learn step-by-step planning as an algorithm.",
+  "body": "An algorithm is a clear list of steps to do something. For a birthday, you need a plan so things happen in the right order.\n\nWhat to do: Put the actions into the correct order so the party is ready on time.",
+  "image": "icons/algorithms.svg",
+  "challenge": {
+      "items": ["buy cake","send invites","decorate","cook food"],
+      "targets": [
+        {"label":"First step","expect":"send invites"},
+        {"label":"Then","expect":"buy cake"},
+        {"label":"Then","expect":"cook food"},
+        {"label":"Last","expect":"decorate"}
+      ]
+    }
+  },
+  {
+    "id": "data-org",
+    "title": "Sort shop stock (Data organization)",
+    "summary": "Group items to make them easy to find.",
+  "body": "Data organization means grouping similar things so they are easier to find. In a small shop, foods go together and cleaning items go together.\n\nWhat to do: Move each item into the correct category box (Food or Cleaning).",
+  "image": "icons/data-org.svg",
+  "challenge": {
+      "items": ["sugar","soap","rice","detergent"],
+      "targets": [
+        {"label":"Food","expect":"rice"},
+        {"label":"Food","expect":"sugar"},
+        {"label":"Cleaning","expect":"soap"},
+        {"label":"Cleaning","expect":"detergent"}
+      ]
+    }
+  },
+  {
+    "id": "flowcharts",
+    "title": "What to do when it rains (Flowcharts)",
+    "summary": "Choose actions based on conditions.",
+  "body": "Flowcharts are a way to decide what to do based on conditions, like whether it will rain. They help you pick the right action step by step.\n\nWhat to do: Choose the action that fits the weather condition in each box.",
+  "image": "icons/flowcharts.svg",
+  "challenge": {
+      "items": ["cover crops","postpone work","check forecast","use shelter"],
+      "targets": [
+        {"label":"If rain expected","expect":"check forecast"},
+        {"label":"If raining","expect":"cover crops"},
+        {"label":"If heavy rain","expect":"use shelter"},
+        {"label":"Else","expect":"postpone work"}
+      ]
+    }
+  },
+  {
+    "id": "debugging",
+    "title": "Fix the timetable (Debugging)",
+    "summary": "Find and correct mistakes in a schedule.",
+  "body": "Debugging means finding mistakes and fixing them. A timetable with activities in the wrong places needs correcting so the day makes sense.\n\nWhat to do: Put each activity into the correct time slot so the schedule is fixed.",
+  "image": "icons/debugging.svg",
+  "challenge": {
+      "items": ["market visit","school drop","harvest","rest"],
+      "targets": [
+        {"label":"Morning","expect":"school drop"},
+        {"label":"Midday","expect":"market visit"},
+        {"label":"Afternoon","expect":"harvest"},
+        {"label":"Evening","expect":"rest"}
+      ]
+    }
+  },
+  {
+    "id": "logic",
+    "title": "If/Else farming tasks (Logical thinking)",
+    "summary": "Make decisions using simple rules.",
+  "body": "If/Else rules help you make decisions: if a condition is true do one thing, else do another. Farmers use simple rules to choose tasks.\n\nWhat to do: Place the task that matches each condition (for example, water if the plants are thirsty).",
+  "image": "icons/logic.svg",
+  "challenge": {
+      "items": ["water plants","fertilize","harvest","wait"],
+      "targets": [
+        {"label":"If thirsty","expect":"water plants"},
+        {"label":"If mature","expect":"harvest"},
+        {"label":"If low nutrients","expect":"fertilize"},
+        {"label":"Else","expect":"wait"}
+      ]
+    }
+  },
+  {
+    "id": "budgets",
+    "title": "Household budget (Data literacy)",
+    "summary": "Prioritize expenses to balance a small household budget.",
+  "body": "A household budget means deciding which expenses are most important so money lasts. Some items are essential, others are optional.\n\nWhat to do: Put each expense into the right group from essential to optional.",
+  "image": "icons/budgets.svg",
+  "challenge": {
+      "items": ["rent","school fees","groceries","entertainment"],
+      "targets": [
+        {"label":"Essential","expect":"rent"},
+        {"label":"Essential","expect":"groceries"},
+        {"label":"Important","expect":"school fees"},
+        {"label":"Optional","expect":"entertainment"}
+      ]
+    }
+  }
+]

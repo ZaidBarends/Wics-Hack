@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Yanga</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%23FFD1DC'/%3E%3Ctext x='8' y='11' font-size='9' text-anchor='middle' fill='%232b2b3a' font-family='Inter,Arial'>D</text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Yanga</h1>
+      <p>Micro-lessons that teach computing without code</p>
+    </div>
+    
+  </header>
+
+  <main id="main">
+    <section id="lessons">
+      <h2>Lessons</h2>
+      <div id="lesson-list" class="card-grid"></div>
+    </section>
+
+    <section id="lesson-area" hidden>
+  <button id="back" onclick="handleBackClick()">← Back</button>
+      <div class="lesson-head">
+        <h2 id="lesson-title"></h2>
+  <button id="read-lesson" title="Read lesson aloud" onclick="handleReadLesson()">🔊</button>
+      </div>
+      <div id="lesson-body"></div>
+      <div id="challenge" class="challenge"></div>
+      <div class="controls">
+  <button id="complete-lesson" onclick="handleCompleteClick()">Mark Complete</button>
+      </div>
+    </section>
+
+    <section id="progress">
+      <h2>Your Progress</h2>
+      <div id="badges" class="badges"></div>
+  <button id="download-cert" onclick="handleDownloadCert()">Download Certificate</button>
+    </section>
+  </main>
+
+  <template id="lesson-card-template">
+    <article class="lesson-card">
+  <img class="lesson-thumb" src="" alt="" />
+      <h3 class="title"></h3>
+      <p class="summary"></p>
+      <button class="start">Start</button>
+    </article>
+  </template>
+
+  <script src="app.js" defer></script>
+  <!-- jsPDF for client-side PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <div class="toast-wrapper" hidden>
+    <div id="toast" class="toast" aria-live="polite" hidden>
+      <div class="toast-body">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span id="toast-msg">Confirm completion?</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="toast-actions">
+            <button id="toast-confirm" class="small">Confirm</button>
+            <button id="toast-cancel" class="small">Cancel</button>
+          </div>
+          <button id="toast-close" class="toast-close" aria-label="Close notification">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
