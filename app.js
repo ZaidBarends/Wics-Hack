@@ -72,7 +72,10 @@ function renderChallenge(challenge){
 
 function speak(text){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); const utter = new SpeechSynthesisUtterance(text); utter.rate = 0.95; window.speechSynthesis.speak(utter) }
 
-function createDraggable(value){ const d = document.createElement('div'); d.className = 'draggable'; d.draggable = true; d.textContent = value; d.dataset.value = value; d.addEventListener('dragstart', e=>{ e.dataTransfer.setData('text/plain', value); e.dataTransfer.effectAllowed='move'; __dragging = d }); d.addEventListener('dragend', e=>{ __dragging = null }); return d }
+function createDraggable(value){ const d = document.createElement('div'); d.className = 'draggable'; d.draggable = true; d.textContent = value; d.dataset.value = value; d.addEventListener('dragstart', e=>{ e.dataTransfer.setData('text/plain', value); e.dataTransfer.effectAllowed='move'; __dragging = d }); d.addEventListener('dragend', e=>{ __dragging = null });
+  // touch support
+  try{ addTouchDrag(d) }catch(e){}
+  return d }
 
 function createPlaced(value){
   const wrap = document.createElement('div'); wrap.className = 'placed-item'; wrap.dataset.value = value;
@@ -81,6 +84,8 @@ function createPlaced(value){
   btn.addEventListener('click', ()=>{ document.querySelector('.pane').appendChild(createSourceWrapper(value)); wrap.remove(); checkChallenge() });
   wrap.appendChild(span); wrap.appendChild(btn);
   wrap.draggable = true; wrap.addEventListener('dragstart', e=>{ e.dataTransfer.setData('text/plain', value); e.dataTransfer.effectAllowed='move'; __dragging = wrap }); wrap.addEventListener('dragend', e=>{ __dragging = null });
+  // touch support for placed items
+  try{ addTouchDrag(wrap) }catch(e){}
   return wrap;
 }
 
@@ -174,6 +179,41 @@ function init(){
   const completeBtn = $('#complete-lesson'); if(completeBtn){ const handler = ()=>{ try{ console.debug('completeBtn clicked'); const ok = validateChallenge(); if(ok){ const lid = $('#lesson-title').textContent && (window.lessons||[]).find(l=>l.title===$('#lesson-title').textContent); if(lid) showToast(`Mark "${lid.title}" as complete?`, ()=> markLessonComplete(lid)) } else { speak('Some items are incorrect. Please try again.'); const firstBad = document.querySelector('.target.bad'); if(firstBad) firstBad.scrollIntoView({behavior:'smooth',block:'center'}) } }catch(err){ console.error('complete handler failed', err) } }; completeBtn.addEventListener('click', handler); window.handleCompleteClick = handler; completeBtn.onclick = window.handleCompleteClick }
 
   const download = $('#download-cert'); if(download) download.addEventListener('click', ()=>{ window.handleDownloadCert() })
+}
+
+// Touch drag helpers for touchscreen support
+let touchState = { ghost: null, itemValue: null, origin: null };
+function onTouchMove(e){
+  if(!touchState.ghost) return; const t = e.touches[0]; e.preventDefault(); touchState.ghost.style.left = (t.clientX - 20) + 'px'; touchState.ghost.style.top = (t.clientY - 20) + 'px';
+  // highlight possible target
+  $all('.target').forEach(x=>x.classList.remove('touch-over'));
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  const over = el && el.closest && el.closest('.target'); if(over) over.classList.add('touch-over');
+}
+function onTouchEnd(e){
+  const t = e.changedTouches[0]; document.removeEventListener('touchmove', onTouchMove); document.removeEventListener('touchend', onTouchEnd);
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  const overTarget = el && el.closest && el.closest('.target'); const value = touchState.itemValue;
+  if(value && overTarget){
+    // remove duplicates
+    const allPlaced = Array.from(document.querySelectorAll('.placed-item'));
+    const already = allPlaced.find(el=>el.dataset.value===value); if(already) already.remove();
+    const existing = overTarget.querySelector('.placed-item'); if(existing){ document.querySelector('.pane').appendChild(createSourceWrapper(existing.dataset.value)); existing.remove(); }
+    const placedEl = createPlaced(value); placedEl.dataset.value = value; overTarget.appendChild(placedEl);
+    const srcWrap = touchState.origin && touchState.origin.closest && touchState.origin.closest('.source-item'); if(srcWrap) srcWrap.remove();
+    checkChallenge();
+  } else if(value){
+    // drop back to source pane
+    const leftPane = document.querySelector('.pane'); if(leftPane) leftPane.appendChild(createSourceWrapper(value));
+  }
+  if(touchState.ghost){ try{ touchState.ghost.remove() }catch(e){} touchState.ghost = null }
+  $all('.target').forEach(x=>x.classList.remove('touch-over'));
+  touchState.itemValue = null; touchState.origin = null;
+}
+function addTouchDrag(el){
+  el.addEventListener('touchstart', function(ev){ if(ev.touches.length !== 1) return; const t = ev.touches[0]; ev.preventDefault(); touchState.itemValue = (el.dataset && el.dataset.value) ? el.dataset.value : (el.textContent || '').trim(); touchState.origin = el;
+    const g = el.cloneNode(true); g.classList.add('touch-ghost'); g.style.position = 'fixed'; g.style.left = (t.clientX - 20) + 'px'; g.style.top = (t.clientY - 20) + 'px'; g.style.pointerEvents = 'none'; g.style.opacity = '0.95'; g.style.zIndex = '9999'; document.body.appendChild(g); touchState.ghost = g; document.addEventListener('touchmove', onTouchMove, { passive: false }); document.addEventListener('touchend', onTouchEnd);
+  })
 }
 
 init();
